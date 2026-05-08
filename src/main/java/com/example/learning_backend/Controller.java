@@ -3,6 +3,8 @@ package com.example.learning_backend;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +22,8 @@ public class Controller {
     ServiceCES service;
 
     @GetMapping("/students")
-    public ResponseEntity<List<Student>> getStudents() {
-        if (service.getAllStudents() == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.getAllStudents());
+    public ResponseEntity<Page<Student>> getStudents(Pageable pageable) {
+        return ResponseEntity.ok(service.getAllStudents(pageable));
     }
 
     @GetMapping("/courses")

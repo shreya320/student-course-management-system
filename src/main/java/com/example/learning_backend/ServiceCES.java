@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +18,8 @@ public class ServiceCES {
     @Autowired
     EnrollmentRepository enrollmentRepo;
 
-    public List<Student> getAllStudents() {
-        return studentRepo.findAll();
+    public Page<Student> getAllStudents(Pageable pageable) {
+        return studentRepo.findAll(pageable);
     }
 
     public List<Course> getAllCourse() {
