@@ -2,6 +2,7 @@ package com.example.learning_backend;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -10,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class Enrollment {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @ManyToOne
@@ -64,19 +65,19 @@ public class Enrollment {
         this.grade = grade;
     }
 
-    public int getMarks(){
+    public int getMarks() {
         return marks;
     }
 
-    public void setMarks(int marks){
+    public void setMarks(int marks) {
         this.marks = marks;
     }
 
-    public int getSemester(){
+    public int getSemester() {
         return semester;
     }
 
-    public void setSemester(int semester){
+    public void setSemester(int semester) {
         this.semester = semester;
     }
 }
