@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class Controller {
 
@@ -102,7 +104,7 @@ public class Controller {
     }
 
     @PostMapping("/studentsDTO")
-    public ResponseEntity<StudentResponseDTO> addStudent(@RequestBody StudentRequestDTO studentRequest) {
+    public ResponseEntity<StudentResponseDTO> addStudent(@Valid @RequestBody StudentRequestDTO studentRequest) {
         return ResponseEntity.ok(service.addStudent(studentRequest));
     }
 
