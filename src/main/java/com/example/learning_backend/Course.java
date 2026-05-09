@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.FetchType;
 
 @Entity
 public class Course {
@@ -24,7 +25,7 @@ public class Course {
     private int credits;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<Enrollment> enrollments;
 
     public Course() {
