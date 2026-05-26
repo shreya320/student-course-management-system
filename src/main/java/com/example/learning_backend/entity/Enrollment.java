@@ -12,7 +12,7 @@ public class Enrollment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "student_id")
@@ -23,8 +23,8 @@ public class Enrollment {
     private Course course;
 
     private char grade;
-    int marks;
-    int semester;
+    private int marks;
+    private int semester;
 
     public Enrollment() {
     }
