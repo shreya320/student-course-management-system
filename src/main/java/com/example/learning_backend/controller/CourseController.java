@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.learning_backend.entity.Course;
+import com.example.learning_backend.dto.CourseRequestDTO;
+import com.example.learning_backend.dto.CourseResponseDTO;
 import com.example.learning_backend.service.CourseService;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class CourseController {
@@ -19,7 +22,7 @@ public class CourseController {
     CourseService service;
 
     @GetMapping("/courses")
-    public ResponseEntity<List<Course>> getCourses() {
+    public ResponseEntity<List<CourseResponseDTO>> getCourses() {
         if (service.getAllCourse() == null) {
             return ResponseEntity.notFound().build();
         }
@@ -27,7 +30,7 @@ public class CourseController {
     }
 
     @PostMapping("/courses")
-    public ResponseEntity<?> addCourse(@RequestBody Course course) {
+    public ResponseEntity<CourseResponseDTO> addCourse(@Valid @RequestBody CourseRequestDTO course) {
         return ResponseEntity.ok(service.addCourse(course));
     }
 }

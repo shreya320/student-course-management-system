@@ -20,7 +20,7 @@ public class Course {
     private Integer id;
 
     @Column(nullable = false)
-    private String course_name;
+    private String courseName;
 
     private int credits;
 
@@ -31,8 +31,8 @@ public class Course {
     public Course() {
     }
 
-    public Course(String course_name, int credits) {
-        this.course_name = course_name;
+    public Course(String courseName, int credits) {
+        this.courseName = courseName;
         this.credits = credits;
     }
 
@@ -41,11 +41,11 @@ public class Course {
     }
 
     public String getCourseName() {
-        return course_name;
+        return courseName;
     }
 
-    public void setCourseName(String course_name) {
-        this.course_name = course_name;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public int getCredits() {

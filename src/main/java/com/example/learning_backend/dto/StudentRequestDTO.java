@@ -8,7 +8,7 @@ public class StudentRequestDTO {
     @NotBlank(message = "Name is required")
     private String name;
 
-    @NotBlank(message = " email cannot be blank")
+    @NotBlank(message = " Email cannot be blank")
     @Email(message = "Email is not valid")
     private String email;
 
