@@ -1,4 +1,4 @@
-package com.example.learning_backend;
+package com.example.learning_backend.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,16 +1,18 @@
-package com.example.learning_backend;
+package com.example.learning_backend.dto;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+public class StudentResponseDTO {
 
-public class StudentRequestDTO {
-
-    @NotBlank(message = "Name is required")
+    private Integer id;
     private String name;
-
-    @NotBlank(message = " email cannot be blank")
-    @Email(message = "Email is not valid")
     private String email;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

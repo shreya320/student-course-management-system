@@ -1,4 +1,4 @@
-package com.example.learning_backend;
+package com.example.learning_backend.dto;
 
 public class StudentSummaryDTO {
 

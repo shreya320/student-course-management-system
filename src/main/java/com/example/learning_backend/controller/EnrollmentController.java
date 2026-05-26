@@ -1,10 +1,8 @@
-package com.example.learning_backend;
+package com.example.learning_backend.controller;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,31 +12,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.learning_backend.entity.Enrollment;
+import com.example.learning_backend.service.EnrollmentService;
+
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 
 @RestController
-public class Controller {
+public class EnrollmentController {
 
     @Autowired
-    ServiceCES service;
-
-    @GetMapping("/students")
-    public ResponseEntity<Page<Student>> getStudents(Pageable pageable) {
-        return ResponseEntity.ok(service.getAllStudents(pageable));
-    }
+    EnrollmentService service;
 
     @GetMapping("/csrf-token")
     public CsrfToken getCsrfToken(HttpServletRequest request) {
         return (CsrfToken) request.getAttribute("_csrf");
-    }
-
-    @GetMapping("/courses")
-    public ResponseEntity<List<Course>> getCourses() {
-        if (service.getAllCourse() == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(service.getAllCourse());
     }
 
     @GetMapping("/enrollments")
@@ -47,16 +34,6 @@ public class Controller {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(service.getAllEnrollment());
-    }
-
-    @PostMapping("/students")
-    public ResponseEntity<?> addStudent(@RequestBody Student student) {
-        return ResponseEntity.ok(service.addStudent(student));
-    }
-
-    @PostMapping("/courses")
-    public ResponseEntity<?> addCourse(@RequestBody Course course) {
-        return ResponseEntity.ok(service.addCourse(course));
     }
 
     @PostMapping("/enrollments")
@@ -100,23 +77,13 @@ public class Controller {
     }
 
     @GetMapping("/enrollments/avgMarks")
-    public ResponseEntity<Double> everageMarks() {
+    public ResponseEntity<Double> averageMarks() {
         return ResponseEntity.ok(service.averageMarks());
     }
 
     @GetMapping("/enrollments/highestMarks")
     public ResponseEntity<Integer> highestMarks() {
         return ResponseEntity.ok(service.highestMarks());
-    }
-
-    @PostMapping("/studentsDTO")
-    public ResponseEntity<StudentResponseDTO> addStudent(@Valid @RequestBody StudentRequestDTO studentRequest) {
-        return ResponseEntity.ok(service.addStudent(studentRequest));
-    }
-
-    @GetMapping("/studentsName")
-    public ResponseEntity<List<StudentSummaryDTO>> getNames() {
-        return ResponseEntity.ok(service.getNames());
     }
 
 }

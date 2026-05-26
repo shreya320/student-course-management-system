@@ -1,4 +1,4 @@
-package com.example.learning_backend;
+package com.example.learning_backend.entity;
 
 import java.util.List;
 
@@ -6,55 +6,54 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.FetchType;
 
 @Entity
-public class Student {
+public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(nullable = false)
-    private String name;
+    private String course_name;
 
-    @Column(nullable = false)
-    private String email;
+    private int credits;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private List<Enrollment> enrollments;
 
-    public Student() {
+    public Course() {
     }
 
-    public Student(String name, String email) {
-        this.name = name;
-        this.email = email;
+    public Course(String course_name, int credits) {
+        this.course_name = course_name;
+        this.credits = credits;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getCourseName() {
+        return course_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCourseName(String course_name) {
+        this.course_name = course_name;
     }
 
-    public String getEmail() {
-        return email;
+    public int getCredits() {
+        return credits;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setCredits(int credits) {
+        this.credits = credits;
     }
 
     public List<Enrollment> getEnrollments() {

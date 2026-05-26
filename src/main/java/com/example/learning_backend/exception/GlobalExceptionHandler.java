@@ -1,17 +1,20 @@
-package com.example.learning_backend;
-import java.util.*;
+package com.example.learning_backend.exception;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.http.ResponseEntity;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> handleValidExceptions(MethodArgumentNotValidException ex){
+    public ResponseEntity<Map<String, String>> handleValidExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
-        
+
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
         });

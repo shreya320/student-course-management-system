@@ -1,4 +1,4 @@
-package com.example.learning_backend;
+package com.example.learning_backend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +21,9 @@ public class SecurityConfig {
                 // public endpoints
                 .requestMatchers(
                         "/students",
+                        "/studentsDTO",
                         "/courses",
-                        "/enrollments"
+                        "/enrollments/**"
                 ).permitAll()
                 // everything else protected
                 .anyRequest().authenticated())
