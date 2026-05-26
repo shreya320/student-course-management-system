@@ -20,12 +20,19 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepo;
 
-    public Page<Student> getAllStudents(Pageable pageable) {
-        return studentRepo.findAll(pageable);
-    }
+    public Page<StudentResponseDTO> getAllStudents(Pageable pageable) {
 
-    public Student addStudent(Student student) {
-        return studentRepo.save(student);
+        Page<Student> students = studentRepo.findAll(pageable);
+        return students.map(student -> {
+
+            StudentResponseDTO dto = new StudentResponseDTO();
+
+            dto.setId(student.getId());
+            dto.setName(student.getName());
+            dto.setEmail(student.getEmail());
+
+            return dto;
+        });
     }
 
     public StudentResponseDTO addStudent(StudentRequestDTO request) {

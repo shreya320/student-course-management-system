@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.learning_backend.dto.StudentRequestDTO;
 import com.example.learning_backend.dto.StudentResponseDTO;
 import com.example.learning_backend.dto.StudentSummaryDTO;
-import com.example.learning_backend.entity.Student;
 import com.example.learning_backend.service.StudentService;
 
 import jakarta.validation.Valid;
@@ -26,16 +25,11 @@ public class StudentController {
     StudentService service;
 
     @GetMapping("/students")
-    public ResponseEntity<Page<Student>> getStudents(Pageable pageable) {
+    public ResponseEntity<Page<StudentResponseDTO>> getStudents(Pageable pageable) {
         return ResponseEntity.ok(service.getAllStudents(pageable));
     }
 
     @PostMapping("/students")
-    public ResponseEntity<?> addStudent(@RequestBody Student student) {
-        return ResponseEntity.ok(service.addStudent(student));
-    }
-
-    @PostMapping("/studentsDTO")
     public ResponseEntity<StudentResponseDTO> addStudent(@Valid @RequestBody StudentRequestDTO studentRequest) {
         return ResponseEntity.ok(service.addStudent(studentRequest));
     }
