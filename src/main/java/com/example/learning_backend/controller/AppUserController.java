@@ -26,7 +26,7 @@ public class AppUserController {
     }
 
     @PostMapping("/login")
-    public AppUserResponseDTO login(@Valid @RequestBody LoginRequestDTO loginRequest) {
+    public String login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         return userService.verify(loginRequest);
     }
 }
